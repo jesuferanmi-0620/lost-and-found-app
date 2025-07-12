@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lost_found_app/Screen/chat_screen.dart';
-import 'package:lost_found_app/Screen/lost_found_screen.dart';
+import 'package:lost_found_app/Screen/home_screen.dart';
 import 'package:lost_found_app/Screen/notification_screen.dart';
 import 'package:lost_found_app/Screen/report_found_item.dart';
 import 'package:lost_found_app/Screen/report_lost_item.dart';
@@ -13,9 +13,9 @@ class dashboard_screen extends StatefulWidget {
 }
 
 class _dashboard_screenState extends State<dashboard_screen> {
-  int _currrentIndex = 0;
+  int _currentIndex = 0;
   final List<Widget> _screens = const [
-    lostfoundscreen(),
+    HomeScreen(),
     reportlostitem(),
   reportfounditem(),
     chatscreen(),
@@ -24,15 +24,16 @@ class _dashboard_screenState extends State<dashboard_screen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: _screens[_currrentIndex],
+    return Scaffold(appBar: AppBar( title: Text('My Dashboard',
+    style: TextStyle(color: Colors.white),),),
+      body: _screens[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _currrentIndex,
+          currentIndex: _currentIndex,
           selectedItemColor: Colors.blue,
           unselectedItemColor: Colors.grey,
           onTap: (index){
             setState(() {
-              _currrentIndex = index;
+              _currentIndex = index;
             });
           },
           items:const[

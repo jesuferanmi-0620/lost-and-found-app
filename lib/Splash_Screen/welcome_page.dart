@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'Screen/login.dart';
+import '/Screen/Authentication/login.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});

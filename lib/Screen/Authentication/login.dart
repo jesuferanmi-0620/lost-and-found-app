@@ -1,14 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:lost_found_app/Screen/lost_found_screen.dart';
+import 'package:lost_found_app/Screen/Authentication/forgot_password_screen.dart';
+import 'package:lost_found_app/Screen/home_screen.dart';
+import 'package:lost_found_app/Screen/Authentication/signup_screen.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
   const Login({super.key});
+
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.blueGrey,
         title: const Text(
           'Log In',
           style: TextStyle(
@@ -29,25 +38,40 @@ class Login extends StatelessWidget {
                 TextField(
                   keyboardType: TextInputType.emailAddress,
                   decoration: const InputDecoration(
-                    labelText: 'Email address',
+                    labelText: 'Email address/Username',
                     border: OutlineInputBorder(),
                   ),
                 ),
                 const SizedBox(height: 12),
 
-                // Password field
+                // Password field with toggle
                 TextField(
-                  obscureText: true,
-                  decoration: const InputDecoration(
+                  obscureText: _obscureText,
+                  decoration: InputDecoration(
                     labelText: 'Password',
-                    border: OutlineInputBorder(),
-                    suffixIcon: Icon(Icons.visibility_off),
+                    border: const OutlineInputBorder(),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _obscureText ? Icons.visibility_off : Icons.visibility,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _obscureText = !_obscureText;
+                        });
+                      },
+                    ),
                   ),
                 ),
+
                 Align(
                   alignment: Alignment.centerRight,
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context,MaterialPageRoute(builder: (_)=> const ForgotPasswordScreen()
+                      ),
+                      );
+                      // Forgot password logic
+                    },
                     child: const Text('Forgot password?'),
                   ),
                 ),
@@ -60,7 +84,7 @@ class Login extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => const lostfoundscreen(),
+                          builder: (_) => const HomeScreen(),
                         ),
                       );
                     },
@@ -77,7 +101,13 @@ class Login extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: OutlinedButton(
-                    onPressed: () {},
+
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (_) => const SignupScreen()
+                      ),
+
+                      );// Navigate to Sign Up
+                    },
                     child: const Text('Sign Up'),
                   ),
                 ),
@@ -88,7 +118,7 @@ class Login extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (_) => const lostfoundscreen(),
+                        builder: (_) => const HomeScreen(),
                       ),
                     );
                   },
@@ -98,6 +128,7 @@ class Login extends StatelessWidget {
             ),
           ),
         ),
+
       ),
     );
   }
