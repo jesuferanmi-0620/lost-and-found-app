@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:lost_found_app/Screen/chat_screen.dart';
+
 
 class BottomContactBar extends StatelessWidget {
   const BottomContactBar({super.key});
@@ -15,7 +17,14 @@ class BottomContactBar extends StatelessWidget {
           children: [
             Expanded(
               child: OutlinedButton.icon(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ChatScreen(),
+                    ),
+                  );
+                },
                 icon: const Icon(Icons.message),
                 label: const Text('Message'),
               ),
@@ -23,7 +32,9 @@ class BottomContactBar extends StatelessWidget {
             const SizedBox(width: 10),
             Expanded(
               child: ElevatedButton.icon(
-                onPressed: () {},
+                onPressed: () {
+                  // Add your call logic here
+                },
                 icon: const Icon(Icons.call),
                 label: const Text('Call Now'),
               ),

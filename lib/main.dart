@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:lost_found_app/Screen/report_found_item.dart';
+import 'package:lost_found_app/Screen/report_lost_item.dart';
 import 'Splash_Screen/welcome_page.dart';
 import '/Screen/Authentication/login.dart';
 import '/Screen/Authentication/signup_screen.dart';
@@ -21,6 +23,8 @@ class MyApp extends StatelessWidget {
         '/Signup_Screen': (context) => const SignupScreen(),
         '/Login': (context) => const Login(),
         '/Forgot_Password': (context) => const ForgotPasswordScreen(),
+        '/Report_Lost_Screen': (context) => const  reportlostitem(),
+        '/Report_Found_Screen': (context) => const reportfounditem(),
       },
     );
   }

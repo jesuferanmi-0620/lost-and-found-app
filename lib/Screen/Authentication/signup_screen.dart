@@ -25,8 +25,9 @@ class _SignupScreenState extends State<SignupScreen> {
   void _submit() {
     if (_formKey.currentState!.validate()) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Signing up...........')),
+        const SnackBar(content: Text('Signing up...')),
       );
+      // Add your sign-up logic here (e.g., API call)
     }
   }
 
@@ -42,19 +43,23 @@ class _SignupScreenState extends State<SignupScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sign Up',
-       style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 20),),
+        title: const Text(
+          'Sign Up',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+            fontSize: 20,
+          ),
+        ),
         backgroundColor: Colors.greenAccent,
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
-
         child: Form(
           key: _formKey,
-
           child: Column(
             children: [
-              // Name field
+              // Full Name
               TextFormField(
                 controller: _nameController,
                 decoration: const InputDecoration(
@@ -68,9 +73,9 @@ class _SignupScreenState extends State<SignupScreen> {
                   return null;
                 },
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 16),
 
-              // Email field
+              // Email
               TextFormField(
                 controller: _emailController,
                 decoration: const InputDecoration(
@@ -81,18 +86,18 @@ class _SignupScreenState extends State<SignupScreen> {
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your email address';
-                  } else if (!RegExp(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
-                      .hasMatch(value)) {
+                  } else if (!RegExp(r"^[\w-\.]+@([\w-]+\.)+[\w]{2,4}$").hasMatch(value)) {
                     return 'Please enter a valid email address';
                   }
                   return null;
                 },
               ),
-              const SizedBox(height: 25),
+              const SizedBox(height: 16),
 
-              // Password field
+              // Password
               TextFormField(
                 controller: _passwordController,
+                obscureText: _obscurePassword,
                 decoration: InputDecoration(
                   labelText: 'Password',
                   border: const OutlineInputBorder(),
@@ -103,19 +108,18 @@ class _SignupScreenState extends State<SignupScreen> {
                     onPressed: _togglePasswordVisibility,
                   ),
                 ),
-                obscureText: _obscurePassword,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your password';
                   } else if (value.length < 6) {
-                    return 'Password must be at least six characters';
+                    return 'Password must be at least 6 characters long';
                   }
                   return null;
                 },
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 24),
 
-              // Sign Up Button
+              // Submit Button
               ElevatedButton(
                 onPressed: _submit,
                 style: ElevatedButton.styleFrom(
@@ -123,9 +127,9 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
                 child: const Text('Sign Up'),
               ),
-              const SizedBox(height: 19),
+              const SizedBox(height: 24),
 
-              // Redirect to Login
+              // Navigate to Login
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -142,7 +146,6 @@ class _SignupScreenState extends State<SignupScreen> {
           ),
         ),
       ),
-
     );
   }
 }
