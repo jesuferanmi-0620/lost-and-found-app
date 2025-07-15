@@ -48,21 +48,19 @@ class ProfileScreen extends StatelessWidget {
               leading: const Icon(Icons.history),
               title: const Text('My Reports'),
               onTap: () {
-                // TODO: Navigate to My Reports page
               },
             ),
             ListTile(
               leading: const Icon(Icons.lock),
               title: const Text('Change Password'),
               onTap: () {
-                // TODO: Navigate to change password screen
               },
             ),
             ListTile(
               leading: const Icon(Icons.logout),
               title: const Text('Logout'),
               onTap: () {
-                // TODO: Handle logout logic
+
               },
             ),
           ],
